@@ -1,4 +1,4 @@
-package com.test;
+package com.recursive;
 
 public class Factorial {
     public int calculate(int number) {
