@@ -11,9 +11,9 @@ public class Factorial {
     }
 
     public int calculate_r(int number) {
-         if (number == 1) {
-             return 1;
-         }
-         return number * calculate(number - 1);
+        if (number == 1) {
+            return 1;
+        }
+        return number * calculate(number - 1);
     }
 }
