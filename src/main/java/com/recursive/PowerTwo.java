@@ -6,8 +6,6 @@ public class PowerTwo {
     // 6 / 2 = 3 !
 
     public static boolean isPowerOfTwo(int number) {
-        if (number == 0)
-            return false;
 
         while (number != 1) {
             if (number % 2 != 0)
@@ -17,12 +15,12 @@ public class PowerTwo {
 
         return true;
     }
+    public int calculate(int number, int powerOf) {
+        if (powerOf == 0)
+            return 1;
 
-    public static void main(String[] args) {
-        System.out.println(isPowerOfTwo(8));
-        System.out.println(isPowerOfTwo(128));
-        System.out.println(isPowerOfTwo(6));
-        System.out.println(isPowerOfTwo(1));
-        System.out.println(isPowerOfTwo(0));
+        return number * calculate(number, powerOf - 1);
     }
 }
+
+
