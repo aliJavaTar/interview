@@ -12,6 +12,7 @@ public class Power {
 
         return result;
     }
+
     public int calculate(int number, int powerOf) {
         if (powerOf == 0)
             return 1;
@@ -31,5 +32,5 @@ public class Power {
             return result * result;
         else
             return result * result * number;
-        }
+    }
 }
