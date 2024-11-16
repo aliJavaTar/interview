@@ -1,65 +1,45 @@
 package com.recursive;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
+//The maximum obtainable value is 22 (by cutting in two pieces of lengths 2 and 6)
+
+//Input : price[] =  { 3 , 5, 8, 9, 10, 17}
+//Output : 18
+//Explanation : Rod length is 7 And if the prices are as follows.
+//        length   | 1   2   3   4   5   6
+//        ————————
+//price    | 3   4   6   7  9  10
+//The maximum obtainable value is 18 (by making 6 pieces each of length 1)
+
+//Input : price[] =  { 3 }
+//Output : 3
+//Explanation: There is only 1 way to pick a piece of length 1
 public class RodCutting {
-    //        int length = prices.length;
-//        int[] dp = new int[length + 1];
-//        dp[0] = 0;
-//
-//        for (int i = 1; i <= length; i++) {
-//            int maxVal = Integer.MIN_VALUE;
-//
-//            for (int j = 0; j < i; j++) {
-//                maxVal = Math.max(maxVal, prices[j] + dp[i - j - 1]);
-//            }
-//
-//            dp[i] = maxVal;
-//        }
-//
-//        return dp[length];
-    private final int[] prices;
 
-    public RodCutting(int[] prices) {
-        this.prices = prices;
+//Input : price[] =  { 1 , 5, 8, 9, 10, 17 , 17 . 20}
+//Output : 22
+//length   | 1   2   3   4   5   6   7   8
+//        ——————————
+//price    | 1   5   8   9  10  17  17  20
+
+
+    public int getMostPrice(int[] price) {
+        return cutRode(price, price.length);
     }
 
-
-    public int calculate() {
-        Set<Item> items = new TreeSet<>();
-        int maxSize = 0;
+    private int cutRode(int[] price, int length) {
+        if (length == 0) return 0;
         int maxPrice = 0;
-        for (int i = 0; i < prices.length; i++) {
-            items.add(new Item(prices[i], i + 1));
+        for (int index = 0; index < length; index++) {
+            int currentPrice = price[index] + cutRode(price, length - index - 1);
+            maxPrice = Math.max(maxPrice, currentPrice);
         }
-
-        for (Item item : items) {
-            if (maxSize + item.size() > prices.length) {
-                return maxPrice;
-            }
-            maxSize += item.size();
-            maxPrice += item.price();
-        }
-
         return maxPrice;
-
-
     }
-    // prices
-    // length + 1
-    //  i {1, 5};
-    //  j {1, 5};
+
+    //[ 1 meter , 2.................]
+    //price [ 2 , .................]
 
 
 }
 
-    /*
-     1 meter 1 $
-     2 meter 5 $
-     3 meter 7 $
-     4 meter 7 $
-     5 meter 8 $
-     */
